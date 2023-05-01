@@ -15,6 +15,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		builder.Services.AddSingleton<AstronomyService>();
+		builder.Services.AddSingleton<MainPageViewModel>();
+		builder.Services.AddSingleton<MainPage>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

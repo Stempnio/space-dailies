@@ -1,11 +1,10 @@
 ﻿using System;
-namespace SpaceDailies
+using SpaceDailies.Model;
+
+namespace SpaceDailies;
+
+public interface IAstronomyService
 {
-	public class IAstronomyService
-	{
-		public IAstronomyService()
-		{
-		}
-	}
+	public Task<AstronomyDailyEntry> FetchDailyEntry(string date);
 }
 
