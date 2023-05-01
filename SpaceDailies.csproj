@@ -75,5 +75,11 @@
 	  <BundleResource Include="Resources\.DS_Store" />
 	  <BundleResource Include="Resources\Images\arrow_left.png" />
 	  <BundleResource Include="Resources\Images\arrow_right.png" />
+	  <BundleResource Include="Resources\Styles\TextStyles.xaml" Condition=" '$(EnableDefaultXamlItems)' == 'true' ">
+	    <SubType>Designer</SubType>
+	  </BundleResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Remove="Resources\Styles\Colors %28copy%29.xaml" />
 	</ItemGroup>
 </Project>

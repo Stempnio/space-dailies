@@ -9,36 +9,40 @@
             Spacing="25"
             VerticalOptions="Start">
 
-        <BoxView HeightRequest="20"
-                     Color="Transparent"/>
-
-        <Grid HorizontalOptions="FillAndExpand"
+        <Frame Style="{StaticResource CardView}"
+               Margin="10">
+            <Grid HorizontalOptions="FillAndExpand"
                     HeightRequest="80">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="0.6*" />
-                <ColumnDefinition Width="0.2*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
 
-            <ImageButton
+                <ImageButton
                     Grid.Column="0"
                     Source="arrow_left.png"
                     HorizontalOptions="Center"
                     Command="{Binding GetPreviousEntryCommand}"
                     />
 
-            <Label
+                <Label
                     Grid.Column="1"
                     Text="{Binding DailyEntry.date}"
-                    HorizontalOptions="Center"/>
+                    Style="{StaticResource labelMedium}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
 
-            <ImageButton
+                <ImageButton
                     Grid.Column="2"
                     Source="arrow_right.png"
                     HorizontalOptions="Center"
                     Command="{Binding GetNextEntryCommand}"
                     />
-        </Grid>
+            </Grid>
+
+        </Frame>
+
         <ScrollView Margin="5" HeightRequest="500">
 
             <VerticalStackLayout Padding="10">
