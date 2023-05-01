@@ -7,25 +7,25 @@ namespace SpaceDailies;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-	private AstronomyService service;
+    private AstronomyService service;
 
     [ObservableProperty]
     AstronomyDailyEntry dailyEntry;
 
     public MainPageViewModel(AstronomyService service)
-	{
-		this.service = service;
-	}
+    {
+        this.service = service;
+    }
 
     public override void init()
     {
-		var today = formatDate(DateTime.Today);
+        var today = formatDate(DateTime.Today);
         Task.Run(async () => await GetEntry(today));
     }
 
     [RelayCommand]
-	async Task GetPreviousEntry()
-	{
+    async Task GetPreviousEntry()
+    {
         var currentDate = DailyEntry.date;
         var nextDate = addDaysToDate(currentDate, -1);
 
@@ -37,51 +37,50 @@ public partial class MainPageViewModel : BaseViewModel
     {
         var currentDate = DailyEntry.date;
 
-		if(isToday(currentDate))
-		{
-			await displayMaxIndexError();
-			return;
-		}
+        if (isToday(currentDate))
+        {
+            await displayMaxIndexError();
+            return;
+        }
 
-		var nextDate = addDaysToDate(currentDate, 1);
+        var nextDate = addDaysToDate(currentDate, 1);
 
-		await GetEntry(nextDate);
+        await GetEntry(nextDate);
 
     }
 
-	private bool isToday(string date)
-	{
+    private bool isToday(string date)
+    {
         var parsedDate = DateTime.Parse(date);
-		return parsedDate == DateTime.Today;
+        return parsedDate == DateTime.Today;
     }
 
-	private string addDaysToDate(string date, int amount)
-	{
-		var parsedDate = DateTime.Parse(date);
-		var resultDate = parsedDate.AddDays(amount);
+    private string addDaysToDate(string date, int amount)
+    {
+        var parsedDate = DateTime.Parse(date);
+        var resultDate = parsedDate.AddDays(amount);
 
-		return formatDate(resultDate);
+        return formatDate(resultDate);
     }
 
-	private string formatDate(DateTime date) => date.ToString("yyyy-MM-dd");
+    private string formatDate(DateTime date) => date.ToString("yyyy-MM-dd");
 
     async Task GetEntry(string date)
-	{
-		try
-		{
+    {
+        try
+        {
             var entry = await service.FetchDailyEntry(date);
             DailyEntry = entry;
         }
-        catch(Exception)
-		{
-			await displayNetworkError();
-		}
-	}
+        catch (Exception)
+        {
+            await displayNetworkError();
+        }
+    }
 
-	private async Task displayNetworkError() =>
-		await Shell.Current.DisplayAlert("Error", "Unable to download data!", "OK");
+    private async Task displayNetworkError() =>
+        await Shell.Current.DisplayAlert("Error", "Unable to download data!", "OK");
 
-	private async Task displayMaxIndexError() =>
-		await Shell.Current.DisplayAlert("You've reached the end!", "You can't fetch tommorows data. It doesn't exist yet!", "OK");
+    private async Task displayMaxIndexError() =>
+        await Shell.Current.DisplayAlert("You've reached the end!", "You can't fetch tommorows data. It doesn't exist yet!", "OK");
 }
-

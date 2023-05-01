@@ -12,9 +12,9 @@ public class AstronomyService : IAstronomyService
     private const string apodEndpoint = "planetary/apod";
 
     public AstronomyService()
-	{
+    {
         httpClient = new HttpClient();
-	}
+    }
 
     public async Task<AstronomyDailyEntry> FetchDailyEntry(string date)
     {
@@ -22,10 +22,11 @@ public class AstronomyService : IAstronomyService
 
         var response = await httpClient.GetAsync(uri);
 
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             return await response.Content.ReadFromJsonAsync<AstronomyDailyEntry>();
-        } else
+        }
+        else
         {
             throw new Exception($"AstronomyService exception, {response.StatusCode}");
         }
@@ -40,4 +41,3 @@ public class AstronomyService : IAstronomyService
         return uriBuilder.Uri.ToString();
     }
 }
-

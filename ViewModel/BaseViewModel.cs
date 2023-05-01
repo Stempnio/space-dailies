@@ -5,10 +5,10 @@ namespace SpaceDailies;
 
 public abstract class BaseViewModel : ObservableObject
 {
-	public BaseViewModel()
-	{
-		init();
-	}
+    public BaseViewModel()
+    {
+        init();
+    }
 
     abstract public void init();
 }
