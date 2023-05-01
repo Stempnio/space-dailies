@@ -5,8 +5,56 @@
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="SpaceDailies.MainPage">
 
-    <VerticalStackLayout>
+    <VerticalStackLayout
+            Spacing="25"
+            VerticalOptions="Start">
 
+            <BoxView HeightRequest="20"
+                     Color="Transparent"/>
+
+            <Grid HorizontalOptions="FillAndExpand"
+                    HeightRequest="80">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton
+                    Grid.Column="0"
+                    Source="arrow_left.png"
+                    HorizontalOptions="Center"
+                    Command="{Binding GetPreviousEntryCommand}"
+                    />
+
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding DailyEntry.date}"
+                    HorizontalOptions="Center"/>
+
+                <ImageButton
+                    Grid.Column="2"
+                    Source="arrow_right.png"
+                    HorizontalOptions="Center"
+                    Command="{Binding GetNextEntryCommand}"
+                    />
+            </Grid>
+        <ScrollView Margin="5" HeightRequest="500">
+
+            <VerticalStackLayout Padding="10">
+                            <Image
+                Source="{Binding DailyEntry.url}"
+                HeightRequest="200"/>
+
+            <BoxView HeightRequest="30"
+                     Color="Transparent"/>
+
+            <Label
+                Text="{Binding DailyEntry.explanation}"
+                HorizontalTextAlignment="Center"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
 
     </VerticalStackLayout>
 

@@ -10,7 +10,6 @@ public class AstronomyService : IAstronomyService
     private HttpClient httpClient;
     private const string baseUrl = "https://api.nasa.gov/";
     private const string apodEndpoint = "planetary/apod";
-    private const string demoApiKey = "DEMO_KEY";
 
     public AstronomyService()
 	{
@@ -36,7 +35,7 @@ public class AstronomyService : IAstronomyService
     {
         UriBuilder uriBuilder = new UriBuilder(baseUrl);
         uriBuilder.Path += apodEndpoint;
-        uriBuilder.Query = $"api_key={demoApiKey}&date={Uri.EscapeDataString(date)}";
+        uriBuilder.Query = $"api_key={Secrets.apiKey}&date={Uri.EscapeDataString(date)}";
 
         return uriBuilder.Uri.ToString();
     }
