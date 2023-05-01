@@ -54,6 +54,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,12 +66,14 @@
 	  <None Remove="Resources\.DS_Store" />
 	  <None Remove="Resources\Images\arrow_left.png" />
 	  <None Remove="Resources\Images\arrow_right.png" />
+	  <None Remove="Storage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Model\" />
 	  <Folder Include="View\" />
 	  <Folder Include="ViewModel\" />
 	  <Folder Include="Services\" />
+	  <Folder Include="Storage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\.DS_Store" />

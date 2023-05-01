@@ -7,12 +7,12 @@ namespace SpaceDailies;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-    private AstronomyService service;
+    private IAstronomyService service;
 
     [ObservableProperty]
     AstronomyDailyEntry dailyEntry;
 
-    public MainPageViewModel(AstronomyService service)
+    public MainPageViewModel(IAstronomyService service)
     {
         this.service = service;
     }

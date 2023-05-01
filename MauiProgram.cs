@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SpaceDailies.Storage;
 
 namespace SpaceDailies;
 
@@ -15,7 +16,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        builder.Services.AddSingleton<AstronomyService>();
+        builder.Services.AddSingleton<IAstronomyStorage, AstronomyStorage>();
+        builder.Services.AddSingleton<IAstronomyService, AstronomyService>();
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddSingleton<MainPage>();
 
